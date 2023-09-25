@@ -1,2 +1,2 @@
  # indice
- * [Practica 1. logs centralizados](./Practica 1.md)
+ * [Practica 1. logs centralizados](./Practica1.md)
