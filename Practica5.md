@@ -57,14 +57,13 @@ set_var EASYRSA_REQ_COUNTRY    "España"
 set_var EASYRSA_REQ_PROVINCE   "Valencia"
 set_var EASYRSA_REQ_CITY       "Valencia"
 set_var EASYRSA_REQ_ORG        "ASIR2SGD"
-set_var EASYRSA_REQ_EMAIL      "bartormon@alu.edu.gva.es"
+set_var EASYRSA_REQ_EMAIL      "Marmonben.edu.gva.es"
 set_var EASYRSA_REQ_OU         "Community"
 set_var EASYRSA_ALGO           "ec"
 set_var EASYRSA_DIGEST         "sha512"
 ```
 
 ## Generar Certificado
-
 
 Creamos el certificado root público y el par de claves privadas para su entidad de certificación:
 
@@ -98,13 +97,13 @@ Creamos un directorio y generamos dentro una clave privada:
 ```bash
 sudo mkdir ~/practice-csr
 sudo cd ~/practice-csr
-sudo openssl genrsa -out barbara-server.key
+sudo openssl genrsa -out marc-server.key
 ```
 
 Creamos la petición:
 
 ```bash
-openssl req -new -key barbara-server.key -out barbara-server.req
+openssl req -new -key marc-server.key -out marc-server.req
 ```
 
 ## Firmado por CA - Firmar Petición
@@ -113,12 +112,13 @@ Nos movemos a la carpeta del CA e importamos la CSR:
 
 ```bash
 cd ~/easy-rsa
-./easyrsa import-req barbara-server.req barbara-server
+./easyrsa import-req marc-server.req marc-server
 ```
+
 Firmamos la CSR:
 
 ```bash
-./easyrsa sign-req server barbara-server
+./easyrsa sign-req server marc-server
 ```
 
 ## Configurar Apache
@@ -127,16 +127,16 @@ Modificamos el archivo `/etc/apache2/sites-available/default-ssl.conf`:
 
 ```bash
 sudo nano /etc/apache2/sites-available/default-ssl.conf
-SSLCertificateFile      /etc/ssl/certs/barbara-server.crt
-SSLCertificateKeyFile   /etc/ssl/private/barbara-server.key
+SSLCertificateFile      /etc/ssl/certs/marc-server.crt
+SSLCertificateKeyFile   /etc/ssl/private/marc-server.key
 ```
 
 Movemos el certificado y la clave privada al directorio especificado:
 
 ```bash
 cd ~/practice-csr
-sudo cp barbara-server.crt /etc/ssl/certs/
-sudo cp barbara-server.key /etc/ssl/private/
+sudo cp marc-server.crt /etc/ssl/certs/
+sudo cp marc-server.key /etc/ssl/private/
 ```
 
 Habilitamos el sitio y el módulo de SSL:
