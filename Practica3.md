@@ -75,7 +75,7 @@ addgroup est2 eso2
 adduser est3
 ```
 
-Una vez creados los grupos y usuarios, continuamos con la asignación de permisos mediante el script `creacionejercicio.sh`:
+Una vez creados los grupos y usuarios, continuamos con la asignación de permisos mediante el script `acl.sh`:
 
 ```bash
 #!/bin/bash
@@ -94,7 +94,7 @@ setfacl -Rm g:alumnos:rX,g:profesores:rw alumnos
 Establecemos los permisos en las carpetas:
 
 ```bash
-$ sudo bash creacionejercicio.sh
+$ sudo bash acl.sh
 ```
 
 Los permisos resultantes serán similares a los siguientes:
